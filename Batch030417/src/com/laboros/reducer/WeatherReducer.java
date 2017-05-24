@@ -19,6 +19,7 @@ public class WeatherReducer extends
 		// {20140101 -15.6, 20140102 -12.45,......
 
 		float tempMax=Float.MIN_VALUE;
+		String fileName=null;
 		
 		
 		for (Text text : values) {
@@ -35,10 +36,11 @@ public class WeatherReducer extends
 				if(tempMax<iTemp){
 					tempMax=iTemp;
 					finalDate=tokens[0];
+					fileName=tokens[2];
 				}
 			}
 		}
-		context.write(key, new Text(finalDate+"\t"+tempMax));
+		context.write(key, new Text(finalDate+"\t"+tempMax+"\t"+fileName));
 
 	};
 }
